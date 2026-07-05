@@ -1,0 +1,210 @@
+=====================================================
+  LEGACY ASTREL v.1.0 - SECURITY FEATURES LIST
+=====================================================
+
+මේ file එකේ තියෙන්නේ "Legacy Astrel v.1.0" bot එකට දාන්න පුළුවන්
+Anti-Raid / Anti-Nuke security features ටික ගැන idea list එකක්.
+
+
+-----------------------------------------------------
+1. ANTI-RAID (Mass Join Attacks වලට)
+-----------------------------------------------------
+
+- Join Rate Detection
+    තත්පර ගාණකදී member ගාණක් එකපාරටම join උනොත්
+    (උදා: seconds 10ක් ඇතුළත 5+ අය) ඒක raid එකක් කියලා auto-detect
+    කරනවා.
+
+- Account Age Filter
+    අලුතින්ම හදපු accounts (උදා: දවස් 7ට අඩු) join උනොත්
+    auto-kick කරනවා, නැත්නම් verification එකකට යවනවා.
+
+- Auto-Lockdown Mode
+    Raid එකක් detect උනාම server invite ටික temporarily disable
+    කරලා, verification gate එකක් දාලා, ඒ මොහොතේම lock කරනවා.
+
+- No-Avatar / Suspicious Pattern Detection
+    Avatar නැති, username pattern එකම (bot generated names)
+    accounts flag කරනවා.
+
+
+-----------------------------------------------------
+2. ANTI-NUKE (Server එක විනාශ කරන එකට)
+-----------------------------------------------------
+
+මේකයි ඇත්තටම වැදගත්ම කොටස - hacker කෙනෙක්ට admin access
+ලැබුනොත් channels/roles delete කරන්න, mass ban කරන්න බැරි
+කරන එක.
+
+- Action Threshold System
+    Admin කෙනෙක් තත්පර 10ක් ඇතුළත channels 3ක්/roles 3ක්
+    delete කරනවා නම්, ඒ instant ම ඒ කෙනාගේ roles ටික strip
+    කරලා, kick/ban කරලා, action එක undo කරන්න try කරනවා.
+
+- Monitored Dangerous Actions
+    * Channel delete
+    * Role delete
+    * Mass ban / mass kick
+    * Webhook create (raid links යවන්න පාවිච්චි කරන එක)
+    * Permission changes
+    * අලුත් bot එකක් add කිරීම
+
+- Trusted Whitelist
+    ඔයා විශ්වාස කරන admins ලා ටික whitelist එකේ දාලා, ඒ අයට
+    විතරක් threshold එකෙන් exempt වෙන්න පුළුවන්.
+
+- Independent Permission System
+    Discord roles එකට විතරක් depend නොවී, bot එකේම වෙනම
+    "trust level" system එකක් තියෙන එක. Compromised admin
+    account එකකට Discord Administrator permission තිබුනත්,
+    bot එකේ trust list එකේ නැත්නම් ඒ කෙනාට bot commands
+    run කරන්න බෑ.
+
+
+-----------------------------------------------------
+3. VERIFICATION GATE
+-----------------------------------------------------
+
+- අලුත් member කෙනෙක් join උනාම, button එකක් click කරලා /
+  captcha එකක් solve කරලා විතරක් server එකේ channels බලන්න
+  පුළුවන් වෙන විදිහට setup එකක්.
+
+- මේකෙන් bot raids (automated accounts) වළක්වගන්න ලේසි.
+
+
+-----------------------------------------------------
+4. BACKUP & RECOVERY
+-----------------------------------------------------
+
+- Server structure එක (channels, roles, permissions)
+  periodically snapshot එකක් ගන්නවා.
+
+- Nuke එකක් උනොත්, /restore command එකකින් channels/roles
+  ආපහු recreate කරන්න පුළුවන් (message history restore
+  කරන්න බෑ, ඒක Discord API limitation එකක්).
+
+
+-----------------------------------------------------
+5. LOGGING & ALERTS
+-----------------------------------------------------
+
+- සියලුම suspicious/dangerous actions ටික log channel
+  එකකට යවනවා (කවුද, මොකද කලේ, කවදද).
+
+- High-severity දෙයක් උනොත් (mass ban attempt වගේ) owner ට
+  DM එකකින් instant alert එකක් යවනවා.
+
+- Panic button command එකක් - /lockdown කිව්වොත් ඔක්කොම
+  server එක instant ම lock වෙනවා.
+
+
+-----------------------------------------------------
+6. VISIBLE PRESENCE / PSYCHOLOGICAL DETERRENT
+-----------------------------------------------------
+
+මේ කොටසේ තියෙන්නේ technical protection එකට වඩා, member
+ලාට "මේ server එක ලේසියෙන් touch කරන්න බෑ" කියලා INSTANT ම
+දැනෙන්න හදන features. Real security bots (Wick, Nuke Guard)
+වැඩිය depend වෙන්නේ මේ "presence" එකට.
+
+- Bot Status/Activity
+    Bot එකේ status එකේ "Watching for threats" / "Protecting
+    [Server Name]" වගේ දෙයක් 24/7 පේන්න තියෙනවා. Member
+    කෙනෙක් bot list එක බැලුවහම "මේක active security bot
+    එකක්" කියලා instant ම පේනවා.
+
+- Public Violation Announcements
+    Raid try කිරීමක් / suspicious action එකක් උනොත්, ඒක quiet
+    log channel එකකට විතරක් නෙමෙයි, dedicated "security-alerts"
+    channel එකකට public embed එකක් විදිහට යවනවා:
+    "THREAT NEUTRALIZED - [User] attempted to delete 3
+    channels. Action reversed. User banned."
+    මේකෙන් bot එක actually වැඩ කරනවා කියලා members ට පේනවා,
+    real deterrent effect එකක් හැදෙනවා.
+
+- Strong Visual Identity (Embed Design)
+    Security actions වලට වෙනම color/style - dark red, shield/
+    warning emoji, "LEGACY ASTREL SECURITY SYSTEM" කියලා
+    footer එකක්. සාමාන්ය moderation commands වලට වඩා serious
+    look එකක්. Bot එක online උනාම log channel එකට "Legacy
+    Astrel v.1.0 is now online. All systems armed." වගේ
+    startup message එකක් auto-send කරන්න පුළුවන්.
+
+- /securitystatus Command එකක්
+    Anyone ට run කරන්න පුළුවන් dashboard command එකක් -
+    "Protection Level: MAXIMUM", "Threats blocked this week:
+    X", "Anti-Nuke: ACTIVE", "Verification Gate: ACTIVE" වගේ
+    දේවල් පෙන්නනවා. New members ලාටත් server එක protected
+    කියලා instant ම දැනෙනවා.
+
+- Immediate, Visible Consequences
+    Warning එකක් දුන්නම quiet ව නෙමෙයි, "[User] has received
+    warning 2/3. One more violation results in automatic ban."
+    වගේ visible countdown එකක් log/alert channel එකේ පේනවා.
+    මේකෙන් psychological pressure එකක් හැදෙනවා.
+
+- Welcome Message එකේම Warning එකක්
+    අලුත් member කෙනෙක් join උනාම welcome message එකේම:
+    "This server is protected by Legacy Astrel v.1.0. Raid
+    attempts, nukes, and malicious actions are automatically
+    detected and reversed. Violators are permanently banned."
+    කියලා line එකක් දාන්න පුළුවන්.
+
+
+-----------------------------------------------------
+7. HONEST LIMITATION එකක්
+-----------------------------------------------------
+
+VPN/IP detection, alt-account cross-referencing වගේ දේවල්
+(RestoreCord වගේ bots කරන) ඒවට OAuth2 web verification
+infrastructure එකක් ඕන - plain bot එකකට කරන්න බෑ. ඒක
+නැතුව account age + avatar + join-rate combination එකෙන්
+ම ගොඩක් protection එකක් හදාගන්න පුළුවන්.
+
+
+-----------------------------------------------------
+8. ADMIN-SIDE EXTRA / SUPER FEATURES
+-----------------------------------------------------
+
+මේ කොටසේ තියෙන්නේ Section 2 (Anti-Nuke) එකට වඩා admin
+monitoring/control එකට focus වෙන extra features ටිකක්.
+
+- Full Admin Audit Trail
+    Moderation log එකට වඩා පොඩි, admin කෙනෙක් කරන සෑම
+    sensitive action එකක්ම (role edit, channel create/delete,
+    permission change, invite create) වෙනම log channel
+    එකකට automatic log වෙනවා.
+
+- Failed-Permission Tracker
+    Permission නැති කෙනෙක් restricted command එකක් try
+    කරාවි, ඒක flag කරලා pattern එකක් නම් ("මේ user
+    keeps trying restricted commands") owner ට alert යවනවා.
+
+- Dangerous Command Confirmation
+    Mass-ban / purge-all වගේ high-impact command run කරන්න
+    කලින් "Confirm" button එකක් require කරනවා, accidental
+    misuse එකක් වළක්වගන්න.
+
+- Emergency Freeze Mode
+    /freeze command එකක් - owner ට විතරක් run කරන්න
+    පුළුවන්. Run කලාම admins ලාටත් dangerous perms
+    (ban/kick/manage channels) temporarily suspend වෙනවා
+    bot-level trust system එකෙන්, real hack attempt එකක්
+    අතරමැදි කරගන්න.
+
+- Weekly Security Digest DM
+    Owner ට සතියකට වතාවක් DM එකක් - total warnings
+    issued, actions taken, top moderators, flagged incidents
+    ගාණ පෙන්නනවා.
+
+- Trusted Admin Whitelist Management
+    /trust add / remove / list commands - Section 2 එකේ
+    "Independent Permission System" implement කරද්දී මේකත්
+    ඕන වෙනවා.
+
+- Snapshot-Before-Destroy
+    Channel/role delete කරන්න කලින් automatic quick backup
+    entry එකක් ගන්නවා - Section 4 backup එකේ lightweight,
+    real-time trigger වෙන version එකක්.
+
+=====================================================

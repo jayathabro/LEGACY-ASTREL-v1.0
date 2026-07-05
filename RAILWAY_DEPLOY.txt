@@ -1,0 +1,122 @@
+=====================================================
+  RAILWAY එකට DEPLOY කරන විදිය (24/7 ONLINE)
+=====================================================
+
+මේ bot එක Railway (railway.app) එකට upload කරලා 24/7 online තියාගන්න
+පුළුවන්. පහල පියවර ටික පිළිවෙලට කරන්න.
+
+
+-----------------------------------------------------
+0. මුලින්ම දැනගන්න ඕන දේ - DATABASE එක ගැන
+-----------------------------------------------------
+
+Railway එකේ bot එක restart/redeploy වෙනකොට, save කරපු files ඔක්කොම
+මකන්නම මකෙනවා (ephemeral storage). ඒ කියන්නේ warnings, mod-log
+settings, security events වගේ database එකේ තියෙන ඔක්කොම නැති වෙනවා.
+
+ඒක නවත්තන්න "Volume" එකක් mount කරන්න ඕන (පියවර 4 බලන්න). මේකෙන්
+database file එක restart උනත් safe තැනක තියෙනවා. Volume එක සෙට්
+කරන්නෙ නැත්තං bot එක වැඩ කරයි, ඒත් restart එකක් යද්දි data යනවා.
+
+
+-----------------------------------------------------
+1. CODE එක GitHub එකට දාන්න
+-----------------------------------------------------
+
+Railway එක GitHub repo එකකින් deploy කරන එකයි ලේසිම.
+
+   - github.com එකේ අලුත් repo එකක් හදන්න (Private තියන්න පුළුවන්)
+   - මේ folder එකේ terminal එකේ මේ commands ටික run කරන්න:
+
+       git init
+       git add .
+       git commit -m "Discord maintain bot"
+       git branch -M main
+       git remote add origin https://github.com/OYAGE_NAME/REPO_NAME.git
+       git push -u origin main
+
+   වැදගත්: .gitignore එකේ .env සහ venv/ දාලා තියෙන නිසා token එකයි
+   venv එකයි GitHub එකට යන්නේ නෑ (ඒක හරි - token එක secret එකක්).
+
+
+-----------------------------------------------------
+2. RAILWAY PROJECT එකක් හදන්න
+-----------------------------------------------------
+
+   - railway.app යන්න, GitHub එකෙන් sign up/login වෙන්න
+   - "New Project" -> "Deploy from GitHub repo" click කරන්න
+   - උඩ හදපු repo එක තෝරන්න
+   - Railway එක auto-detect කරලා Python bot එක build කරන්න පටන්
+     ගන්නවා (railway.json + Procfile තියෙන නිසා)
+
+
+-----------------------------------------------------
+3. TOKEN එක ENVIRONMENT VARIABLE එකක් විදිහට දාන්න
+-----------------------------------------------------
+
+.env file එක GitHub එකට යන්නේ නෑ, ඒ නිසා token එක Railway එකට වෙනම
+දෙන්න ඕන.
+
+   - Railway project එකේ -> "Variables" tab එකට යන්න
+   - මේ variable එක add කරන්න:
+
+       DISCORD_TOKEN = oyage_token_eka_methana
+
+   - DEV_GUILD_ID දාන්න එපා (global sync ඕන production එකට).
+
+
+-----------------------------------------------------
+4. VOLUME එකක් හදන්න (DATABASE එක safe කරගන්න) - වැදගත්!
+-----------------------------------------------------
+
+   - Railway project එකේ service එක උඩ right-click -> "Add Volume"
+     (නැත්නම් service Settings -> Volumes)
+   - Mount path එක මේකට set කරන්න:
+
+       /data
+
+   - ඊට පස්සේ "Variables" tab එකට ගිහින් තව variable එකක් add කරන්න:
+
+       DATA_DIR = /data
+
+   මේකෙන් database file එක /data/bot.db කියන Volume එකේ save වෙනවා.
+   දැන් bot එක restart/redeploy උනත් warnings සහ settings safe.
+
+
+-----------------------------------------------------
+5. DEPLOY වෙනවද බලන්න
+-----------------------------------------------------
+
+   - "Deployments" tab එකේ logs බලන්න
+   - "Logged in as ..." කියලා පෙන්නුවොත් bot එක online!
+   - Discord එකේ ගිහින් /ping try කරලා බලන්න
+
+   මුල්ම වතාවේ global slash commands sync වෙන්න පැයක් විතර යන්න
+   පුළුවන් (Discord එකේ rule එකක්). ඉවසන්න.
+
+
+-----------------------------------------------------
+6. පස්සේ CODE UPDATE කරන්නේ කොහොමද?
+-----------------------------------------------------
+
+Code එකේ මොනවා හරි වෙනස් කරාම, ඒක GitHub එකට push කරන්න:
+
+    git add .
+    git commit -m "monava hari wenasak"
+    git push
+
+Railway එක auto-detect කරලා අලුත් version එක redeploy කරනවා. Volume
+එකේ database එක ඒ redeploy වලදී safe.
+
+
+-----------------------------------------------------
+COSTS ගැන කෙටියෙන්
+-----------------------------------------------------
+
+Railway එකේ free trial credit එකක් දෙනවා. ඊට පස්සේ පොඩි bot එකකට
+මාසෙකට ඩොලර් 5ක් විතර යන්න පුළුවන් (usage එක අනුව). හරියටම කීයද
+කියලා railway.app එකේ pricing page එකෙන් බලන්න.
+
+=====================================================
+  ඉවරයි! ප්‍රශ්නයක් ආවොත් අහන්න.
+=====================================================

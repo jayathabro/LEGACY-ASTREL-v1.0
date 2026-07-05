@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(venv/Scripts/python.exe --version)",
+      "Bash(venv/Scripts/python.exe -c \"import discord; print\\('discord.py', discord.__version__\\)\")",
+      "Bash(venv/Scripts/python.exe -m py_compile bot.py config.py database.py utils.py cogs/moderation.py cogs/utility.py cogs/antinuke.py cogs/antiraid.py cogs/verification.py cogs/backup.py cogs/security.py)",
+      "Bash(./venv/Scripts/python.exe -m compileall -q bot.py config.py database.py utils.py cogs/)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(DISCORD_TOKEN=x ./venv/Scripts/python.exe -c \"from config import Config; print\\(Config.DATABASE_PATH\\)\")",
+      "Bash(DISCORD_TOKEN=x DATA_DIR=/data ./venv/Scripts/python.exe -c \"from config import Config; print\\(Config.DATABASE_PATH\\)\")",
+      "Bash(MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL=* DISCORD_TOKEN=x DATA_DIR=/data ./venv/Scripts/python.exe -c ' *)"
+    ]
+  }
+}
