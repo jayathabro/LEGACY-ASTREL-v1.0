@@ -2,12 +2,13 @@
 from __future__ import annotations
 
 import asyncio
+import itertools
 import logging
 import sys
 
 import discord
 from discord import app_commands
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 from config import Config
 from database import Database
@@ -28,7 +29,25 @@ INITIAL_EXTENSIONS = (
     "cogs.verification",
     "cogs.backup",
     "cogs.security",
+    "cogs.presence",
 )
+
+# Rotating security-themed presence lines. Each is shown as "Watching <text>".
+# They cycle every ROTATION_SECONDS to make the bot read as an always-on
+# security system standing guard over the server.
+SECURITY_STATUS_LINES = (
+    "for threats",
+    "Anti-Nuke armed",
+    "Anti-Raid active",
+    "for suspicious joins",
+    "the audit logs",
+    "every channel",
+    "for mass-bans",
+    "the member gate",
+    "24/7 protection online",
+    "the server perimeter",
+)
+STATUS_ROTATION_SECONDS = 30
 
 
 class MaintainBot(commands.Bot):
@@ -46,6 +65,7 @@ class MaintainBot(commands.Bot):
         )
         self.db = Database(Config.DATABASE_PATH)
         self._startup_announced = False
+        self._status_cycle = itertools.cycle(SECURITY_STATUS_LINES)
         self.tree.on_error = self._on_app_command_error
 
     async def _on_app_command_error(
@@ -109,11 +129,8 @@ class MaintainBot(commands.Bot):
         assert self.user is not None
         log.info("Logged in as %s (ID: %s)", self.user, self.user.id)
         log.info("Connected to %d guild(s)", len(self.guilds))
-        await self.change_presence(
-            activity=discord.Activity(
-                type=discord.ActivityType.watching, name="for threats"
-            )
-        )
+        if not self._rotate_status.is_running():
+            self._rotate_status.start()
         # Announce "systems armed" to each guild's security-log channel once
         # per process start (FEATURES.txt section 6, Strong Visual Identity).
         if not self._startup_announced:
@@ -126,7 +143,22 @@ class MaintainBot(commands.Bot):
             for guild in self.guilds:
                 await send_security_log(self.db, guild, embed)
 
+    @tasks.loop(seconds=STATUS_ROTATION_SECONDS)
+    async def _rotate_status(self) -> None:
+        """Cycle the bot's 'Watching …' presence through security lines."""
+        await self.change_presence(
+            activity=discord.Activity(
+                type=discord.ActivityType.watching,
+                name=next(self._status_cycle),
+            )
+        )
+
+    @_rotate_status.before_loop
+    async def _before_rotate_status(self) -> None:
+        await self.wait_until_ready()
+
     async def close(self) -> None:
+        self._rotate_status.cancel()
         await self.db.close()
         await super().close()
 

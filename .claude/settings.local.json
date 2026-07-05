@@ -8,7 +8,9 @@
       "Bash(echo \"EXIT: $?\")",
       "Bash(DISCORD_TOKEN=x ./venv/Scripts/python.exe -c \"from config import Config; print\\(Config.DATABASE_PATH\\)\")",
       "Bash(DISCORD_TOKEN=x DATA_DIR=/data ./venv/Scripts/python.exe -c \"from config import Config; print\\(Config.DATABASE_PATH\\)\")",
-      "Bash(MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL=* DISCORD_TOKEN=x DATA_DIR=/data ./venv/Scripts/python.exe -c ' *)"
+      "Bash(MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL=* DISCORD_TOKEN=x DATA_DIR=/data ./venv/Scripts/python.exe -c ' *)",
+      "Bash(./venv/Scripts/python.exe -m py_compile bot.py cogs/presence.py)",
+      "Bash(DISCORD_TOKEN=dummy ./venv/Scripts/python.exe -c ' *)"
     ]
   }
 }

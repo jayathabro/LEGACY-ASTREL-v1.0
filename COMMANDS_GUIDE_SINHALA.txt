@@ -1,0 +1,471 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║          LEGACY ASTREL v1.0 — සම්පූර්ණ Commands මාර්ගෝපදේශය             ║
+║                    (Sinhala Full Guide / සිංහල)                        ║
+║                                                                        ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+
+┌────────────────────────────────────────────────────────────────────────┐
+│ මුලින්ම දැනගන්න ඕන දේවල් (හැඳින්වීම)                                       │
+└────────────────────────────────────────────────────────────────────────┘
+
+• මේ bot එක Discord server එකක් ආරක්ෂා කරන්න හදපු "Security &
+  Moderation" bot එකක්. නම "Legacy Astrel v1.0".
+
+• මේකේ commands ඔක්කොම SLASH COMMANDS. ඒ කියන්නේ Discord එකේ chat box
+  එකේ "/" කියලා type කරාම commands list එක එනවා. පරණ වගේ "!ban" වගේ
+  prefix commands නෑ — හැමදේම "/" වලින් පටන් ගන්නවා.
+
+• සමහර commands වලට "permission" ඕන (උදා: Ban Members, Administrator).
+  ඒ permission නැත්නම් command එක ඔයාට Discord එකේ පේන්නෙවත් නෑ, නැත්නම්
+  "You don't have permission" කියලා පණිවිඩයක් එනවා.
+
+• commands දෙ ආකාරයක් තියෙනවා:
+    1) සාමාන්‍ය commands  →  /ping, /ban වගේ තනි ඒවා.
+    2) Group commands     →  /warn add, /security antinuke වගේ. මුල් වචනය
+       group එකක් (උදා: warn), දෙවැනි වචනය ඒකේ උප-command එකක් (add).
+
+• AUTOMATIC ආරක්ෂාව: Anti-Nuke සහ Anti-Raid කියන දෙක commands නෙවෙයි.
+  ඒවා background එකේ ඉබේම වැඩ කරනවා (කවුරුහරි server එක නස්ති කරන්න
+  හදනකොට ඉබේම අල්ලනවා). ඒවා on/off කරන්නේ /security commands වලින්.
+
+
+═══════════════════════════════════════════════════════════════════════════
+ කොටස 1 — MODERATION COMMANDS (සාමාජිකයන් පාලනය කිරීම)
+═══════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────
+/kick
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : සාමාජිකයෙක්ව server එකෙන් එළවනවා (kick). එයාට නැවත
+                 invite එකකින් ආපහු එන්න පුළුවන්.
+  ඕන දේවල්    : member (කවුද එළවන්නේ), reason (හේතුව — විකල්පයි)
+  Permission  : Kick Members
+  උදාහරණය     : /kick member:@Kamal reason:නීති කැඩුවා
+
+────────────────────────────────────────────────────────────────────────
+/ban
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : සාමාජිකයෙක්ව සම්පූර්ණයෙන්ම block කරනවා (ban). නැවත
+                 එන්න බෑ.
+  ඕන දේවල්    : member (කවුද), reason (හේතුව), delete_message_days
+                 (එයාගේ පරණ messages කී දවසක ඒවා මකනවද — 0 සිට 7 දක්වා)
+  Permission  : Ban Members
+  උදාහරණය     : /ban member:@Nimal reason:Spam delete_message_days:1
+
+────────────────────────────────────────────────────────────────────────
+/unban
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : Ban කරපු කෙනෙක්ගේ ban එක අයින් කරනවා.
+  ඕන දේවල්    : user_id (ban කරපු කෙනාගේ User ID එක — නම නෙවෙයි, ID එක),
+                 reason (හේතුව)
+  Permission  : Ban Members
+  සටහන        : User ID එක ගන්න Discord එකේ Developer Mode on කරලා
+                 කෙනාගේ profile එකේ "Copy User ID" කරන්න.
+  උදාහරණය     : /unban user_id:123456789012345678 reason:දෙවැනි අවස්ථාව
+
+────────────────────────────────────────────────────────────────────────
+/timeout
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : සාමාජිකයෙක්ට තාවකාලිකව chat කරන්න/කතා කරන්න බැරි කරනවා
+                 (mute වගේ). කාලය ඉවර වුණාම ඉබේම හරි යනවා.
+  ඕන දේවල්    : member (කවුද), minutes (කී මිනිත්තුවක්ද — උපරිම 40320,
+                 ඒ කියන්නේ දවස් 28ක්), reason (හේතුව)
+  Permission  : Moderate Members
+  උදාහරණය     : /timeout member:@Sunil minutes:60 reason:සන්සුන් වෙන්න
+
+────────────────────────────────────────────────────────────────────────
+/untimeout
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : කෙනෙක්ට දාපු timeout එක කල් ඉවර වෙන්න කලින් අයින් කරනවා.
+  ඕන දේවල්    : member (කවුද)
+  Permission  : Moderate Members
+  උදාහරණය     : /untimeout member:@Sunil
+
+────────────────────────────────────────────────────────────────────────
+/warn  (WARNING GROUP — අනතුරු ඇඟවීම් කළමනාකරණය)
+────────────────────────────────────────────────────────────────────────
+  මේක group එකක්. යටතේ commands 4ක් තියෙනවා:
+
+  ▸ /warn add
+      මොකද කරන්නේ : සාමාජිකයෙක්ට warning එකක් දෙනවා. එයාට DM එකකුත්
+                     යනවා (DM open නම්).
+      ඕන දේවල්    : member (කවුද), reason (හේතුව — අනිවාර්යයි)
+      Permission  : Moderate Members
+      උදාහරණය     : /warn add member:@Kasun reason:නරක වචන
+
+  ▸ /warn list
+      මොකද කරන්නේ : කෙනෙක්ට දීලා තියෙන warnings ඔක්කොම පෙන්නනවා
+                     (ID එක්කම).
+      ඕන දේවල්    : member (කවුද)
+      Permission  : Moderate Members
+      උදාහරණය     : /warn list member:@Kasun
+
+  ▸ /warn remove
+      මොකද කරන්නේ : තනි warning එකක් ID එකෙන් අයින් කරනවා.
+      ඕන දේවල්    : warning_id (/warn list එකේ පෙන්නපු අංකය)
+      Permission  : Moderate Members
+      උදාහරණය     : /warn remove warning_id:5
+
+  ▸ /warn clear
+      මොකද කරන්නේ : කෙනෙකුගේ warnings ඔක්කොම එකපාරට මකනවා.
+      ඕන දේවල්    : member (කවුද)
+      Permission  : Moderate Members
+      උදාහරණය     : /warn clear member:@Kasun
+
+────────────────────────────────────────────────────────────────────────
+/purge
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : channel එකක messages ගොඩක් එකපාරට මකනවා.
+  ඕන දේවල්    : amount (කී message එකක්ද — 1 සිට 100 දක්වා),
+                 member (එක් කෙනෙකුගේ messages විතරක් මකන්නද — විකල්පයි)
+  Permission  : Manage Messages
+  උදාහරණය     : /purge amount:50
+                 /purge amount:20 member:@Spammer
+
+────────────────────────────────────────────────────────────────────────
+/lock
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : දැන් ඉන්න channel එකේ @everyone ට messages එවන්න
+                 බැරි කරනවා (channel එක lock කරනවා).
+  ඕන දේවල්    : reason (හේතුව — විකල්පයි)
+  Permission  : Manage Channels
+  උදාහරණය     : /lock reason:තාවකාලිකව නවත්තනවා
+
+────────────────────────────────────────────────────────────────────────
+/unlock
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : lock කරපු channel එක ආපහු open කරනවා.
+  ඕන දේවල්    : (කිසිවක් ඕන නෑ)
+  Permission  : Manage Channels
+  උදාහරණය     : /unlock
+
+────────────────────────────────────────────────────────────────────────
+/setmodlog
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : moderation actions (kick, ban, warn ආදිය) log වෙන
+                 channel එක තෝරනවා. ඊට පස්සේ මේ වගේ දේවල් ඒ channel
+                 එකට automatic යනවා.
+  ඕන දේවල්    : channel (log යවන්න ඕන text channel එක)
+  Permission  : Administrator
+  උදාහරණය     : /setmodlog channel:#mod-logs
+
+
+═══════════════════════════════════════════════════════════════════════════
+ කොටස 2 — UTILITY COMMANDS (තොරතුරු / උපයෝගී)
+═══════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────
+/ping
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : bot එකේ වේගය (latency) ms වලින් පෙන්නනවා. bot එක
+                 වැඩ කරනවද කියලා බලන්න හොඳ ක්‍රමයක්.
+  Permission  : කාටත් පුළුවන්
+  උදාහරණය     : /ping
+
+────────────────────────────────────────────────────────────────────────
+/serverinfo
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : server එක ගැන විස්තර පෙන්නනවා — owner, සාමාජික ගණන,
+                 roles ගණන, channels ගණන, හදපු දවස, boost level.
+  Permission  : කාටත් පුළුවන්
+  උදාහරණය     : /serverinfo
+
+────────────────────────────────────────────────────────────────────────
+/userinfo
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : සාමාජිකයෙක් ගැන විස්තර පෙන්නනවා — join වුණ දවස,
+                 account එක හදපු දවස, roles ආදිය.
+  ඕන දේවල්    : member (කවුද — නැත්නම් ඔයාගේම විස්තර පෙන්නනවා)
+  Permission  : කාටත් පුළුවන්
+  උදාහරණය     : /userinfo member:@Kamal
+                 /userinfo   (ඔයාගේම විස්තර)
+
+────────────────────────────────────────────────────────────────────────
+/avatar
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : කෙනෙකුගේ profile picture (avatar) එක ලොකුවට පෙන්නනවා.
+  ඕන දේවල්    : member (කවුද — නැත්නම් ඔයාගේ)
+  Permission  : කාටත් පුළුවන්
+  උදාහරණය     : /avatar member:@Nimal
+
+
+═══════════════════════════════════════════════════════════════════════════
+ කොටස 3 — SECURITY COMMANDS (ආරක්ෂක පද්ධතිය සැකසීම)
+═══════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────
+/securitystatus
+────────────────────────────────────────────────────────────────────────
+  මොකද කරන්නේ : server එකේ ආරක්ෂක තත්ත්වය dashboard එකක් විදිහට
+                 පෙන්නනවා — Anti-Nuke, Anti-Raid, Verification on/off ද,
+                 මෙ සතියේ/මුළු threats කීයක් block කරාද, freeze mode
+                 එක තියෙනවද කියලා.
+  Permission  : කාටත් පුළුවන්
+  උදාහරණය     : /securitystatus
+
+────────────────────────────────────────────────────────────────────────
+/security  (SECURITY CONFIG GROUP — Administrator ඕන)
+────────────────────────────────────────────────────────────────────────
+  මේක group එකක්. යටතේ commands 5ක්:
+
+  ▸ /security setlog
+      මොකද කරන්නේ : විස්තරාත්මක (private) security logs යවන channel එක
+                     තෝරනවා.
+      ඕන දේවල්    : channel
+      උදාහරණය     : /security setlog channel:#security-logs
+
+  ▸ /security setalerts
+      මොකද කරන්නේ : පොදු (public) threat announcements යවන channel
+                     එක තෝරනවා. threat එකක් හම්බුනාම මෙතනට පණිවිඩ එනවා.
+      ඕන දේවල්    : channel
+      උදාහරණය     : /security setalerts channel:#alerts
+
+  ▸ /security antinuke
+      මොකද කරන්නේ : Anti-Nuke ආරක්ෂාව on/off කරනවා.
+      ඕන දේවල්    : enabled (True = on, False = off)
+      උදාහරණය     : /security antinuke enabled:True
+
+  ▸ /security antiraid
+      මොකද කරන්නේ : Anti-Raid ආරක්ෂාව on/off කරනවා.
+      ඕන දේවල්    : enabled (True / False)
+      උදාහරණය     : /security antiraid enabled:True
+
+  ▸ /security minage
+      මොකද කරන්නේ : අලුතෙන් join වෙන account එකක් අඩුම වශයෙන් කී පැයක්
+                     පරණ වෙන්න ඕනද කියලා දානවා. ඊට වඩා අලුත් accounts
+                     (බොහෝ විට bot/raid accounts) block වෙනවා.
+      ඕන දේවල්    : hours (පැය — උදා: 168 = දවස් 7ක්. 0 සිට 8760 දක්වා)
+      උදාහරණය     : /security minage hours:168
+
+
+────────────────────────────────────────────────────────────────────────
+/trust  (TRUSTED ADMIN GROUP — manage කරන්න පුළුවන් OWNER ට විතරයි)
+────────────────────────────────────────────────────────────────────────
+  මොකද මේකෙන්   : "trusted admin" කෙනෙක්ට Anti-Nuke එකෙන් නිදහසක්
+                   (exempt) දෙනවා. ඒ කියන්නේ එයාට channels/roles ගොඩක්
+                   මකන්න පුළුවන් — bot එක එයාව punish කරන්නේ නෑ.
+  සැලකිය යුතුයි : මේවා manage කරන්න පුළුවන් server OWNER ට විතරයි.
+
+  ▸ /trust add
+      මොකද කරන්නේ : කෙනෙක්ව trusted admin list එකට දානවා.
+      ඕන දේවල්    : member
+      උදාහරණය     : /trust add member:@CoOwner
+
+  ▸ /trust remove
+      මොකද කරන්නේ : කෙනෙක්ව trusted list එකෙන් අයින් කරනවා.
+      ඕන දේවල්    : member
+      උදාහරණය     : /trust remove member:@CoOwner
+
+  ▸ /trust list
+      මොකද කරන්නේ : trusted admins ඔක්කොම පෙන්නනවා. (Owner හැමවෙලේම
+                     automatic trusted.)
+      උදාහරණය     : /trust list
+
+────────────────────────────────────────────────────────────────────────
+/lockdown  (PANIC BUTTON GROUP — Administrator ඕන)
+────────────────────────────────────────────────────────────────────────
+  ▸ /lockdown engage
+      මොකද කරන්නේ : හදිසි අවස්ථාවක සම්පූර්ණ server එකේම text channels
+                     ඔක්කොම එකපාරට lock කරනවා (raid/attack එකක් වෙනකොට).
+      උදාහරණය     : /lockdown engage
+
+  ▸ /lockdown lift
+      මොකද කරන්නේ : lockdown එක අයින් කරලා channels ඔක්කොම ආපහු open
+                     කරනවා.
+      උදාහරණය     : /lockdown lift
+
+────────────────────────────────────────────────────────────────────────
+/freeze  (EMERGENCY FREEZE GROUP — OWNER ට විතරයි)
+────────────────────────────────────────────────────────────────────────
+  මොකද මේකෙන්   : server එක hack වුණා කියලා සැක හිතුනොත්, "freeze mode"
+                   දානවා. එතකොට owner සහ bot එක විතරයි trusted විදිහට
+                   සලකන්නේ. වෙන ඕනෑම admin කෙනෙක් භයානක දෙයක් කරොත්
+                   (channel මකනවා වගේ) සාමාන්‍ය threshold එක බලන්නේ
+                   නැතුව එක පාරටම punish වෙනවා.
+
+  ▸ /freeze on
+      මොකද කරන්නේ : freeze mode එක ක්‍රියාත්මක කරනවා.
+      ඕන දේවල්    : minutes (කී මිනිත්තුවක්ද — default 30, උපරිම 1440)
+      උදාහරණය     : /freeze on minutes:60
+
+  ▸ /freeze off
+      මොකද කරන්නේ : freeze mode එක අයින් කරනවා.
+      උදාහරණය     : /freeze off
+
+
+═══════════════════════════════════════════════════════════════════════════
+ කොටස 4 — VERIFICATION COMMANDS (සාමාජික තහවුරු කිරීම)
+═══════════════════════════════════════════════════════════════════════════
+
+  මොකද මේකෙන්   : අලුත් සාමාජිකයෝ button එකක් click කරලා verify වෙන්න
+                   ඕන කරන gate එකක්. verify වුණාම විතරයි ඒ අයට server
+                   එකේ channels පේන්නේ / access ලැබෙන්නේ. Bot/raid
+                   accounts වලට එන්න අමාරු කරන්නයි මේක.
+
+────────────────────────────────────────────────────────────────────────
+/verification  (GROUP — Administrator ඕන)
+────────────────────────────────────────────────────────────────────────
+  ▸ /verification setup
+      මොකද කරන්නේ : verification button එක channel එකක post කරලා gate
+                     එක on කරනවා.
+      ඕන දේවල්    : channel (button එක දාන්නේ කොහෙද),
+                     verified_role (verify වුණාම දෙන role එක)
+      සටහන        : verified_role එක bot එකේ role එකට වඩා පහළින්
+                     තියෙන්න ඕන, නැත්නම් bot එකට ඒක දෙන්න බෑ.
+      උදාහරණය     : /verification setup channel:#verify verified_role:@Member
+
+  ▸ /verification disable
+      මොකද කරන්නේ : verification gate එක off කරනවා.
+      උදාහරණය     : /verification disable
+
+
+═══════════════════════════════════════════════════════════════════════════
+ කොටස 5 — BACKUP & RECOVERY COMMANDS (backup සහ ප්‍රතිසාධනය)
+═══════════════════════════════════════════════════════════════════════════
+
+  මොකද මේකෙන්   : server එකේ ව්‍යුහය (roles, categories, channels) එක
+                   snapshot එකක් විදිහට save කරගන්නවා. කවුරුහරි server
+                   එක නස්ති කරොත් (nuke), මේ snapshot එකෙන් roles/channels
+                   ආපහු හදාගන්න පුළුවන්. Bot එක තනියම හැම පැය 6කට වරක්
+                   automatic backup එකක් ගන්නවා.
+  සැලකිය යුතුයි : MESSAGES ආපහු ගන්න බෑ (ඒක Discord එකේ සීමාවක්).
+                   Roles සහ channels විතරයි ආපහු හදන්නේ.
+
+────────────────────────────────────────────────────────────────────────
+/backup  (GROUP — Administrator ඕන)
+────────────────────────────────────────────────────────────────────────
+  ▸ /backup now
+      මොකද කරන්නේ : දැන් මේ මොහොතේ server ව්‍යුහයේ snapshot එකක් ගන්නවා.
+      උදාහරණය     : /backup now
+
+  ▸ /backup info
+      මොකද කරන්නේ : අන්තිමට ගත්ත snapshot එකේ විස්තර පෙන්නනවා (කවදද
+                     ගත්තේ, roles/channels කීයක් තියෙනවද).
+      උදාහරණය     : /backup info
+
+  ▸ /backup restore
+      මොකද කරන්නේ : අන්තිම snapshot එකෙන් නැති වෙලා තියෙන roles සහ
+                     channels ආපහු හදනවා.
+      Permission  : SERVER OWNER ට විතරයි (ගොඩක් බලපෑම් ඇති නිසා).
+      උදාහරණය     : /backup restore
+
+
+═══════════════════════════════════════════════════════════════════════════
+ කොටස 6 — AUTOMATIC ආරක්ෂාව (Commands නෙවෙයි — ඉබේම වැඩ කරන ඒවා)
+═══════════════════════════════════════════════════════════════════════════
+
+මේ දෙක commands නෙවෙයි. Background එකේ 24/7 වැඩ කරනවා. ඒවා on/off
+කරන්නේ ඉහත /security commands වලින්.
+
+────────────────────────────────────────────────────────────────────────
+[ANTI-NUKE]  server නස්ති කිරීම වැළැක්වීම
+────────────────────────────────────────────────────────────────────────
+  කවුරුහරි (admin කෙනෙක් උනත්) කෙටි කාලයක් ඇතුළත භයානක actions ගොඩක්
+  කරොත් ඉබේම අල්ලනවා. නිරීක්ෂණය කරන actions:
+    • channels මකනවා
+    • roles මකනවා
+    • members ගොඩක් ban කරනවා
+    • members ගොඩක් kick කරනවා
+    • webhooks හදනවා
+    • අලුත් bots add කරනවා
+
+  Threshold එක පැනලා ගියොත් → ඒ කෙනාගේ roles ගලවලා, ban කරලා, log
+  එකට සහ owner ට DM එකක් යවනවා. (Owner, bot එක, සහ /trust list එකේ
+  අය මේකෙන් නිදහස්.)
+
+────────────────────────────────────────────────────────────────────────
+[ANTI-RAID]  සමූහ raid ප්‍රහාර වැළැක්වීම
+────────────────────────────────────────────────────────────────────────
+  කෙටි වෙලාවකින් සාමාජිකයෝ ගොඩක් එකපාරට join වුණොත් (raid එකක්) ඉබේම
+  server එක lock-down කරනවා. එහෙමම:
+    • ගොඩක් අලුත් accounts (/security minage වලින් දාපු කාලයට වඩා අලුත්)
+      block/kick කරනවා.
+    • profile picture නැති + අලුත් accounts වලට සැක කරනවා.
+    • raid එකක් අල්ලපු ගමන් channels lock කරලා owner ට alert කරනවා.
+
+
+═══════════════════════════════════════════════════════════════════════════
+ කොටස 7 — පටන් ගන්න පියවරෙන් පියවර (Admin Setup Guide)
+═══════════════════════════════════════════════════════════════════════════
+
+server එකකට bot එක add කරාට පස්සේ මේ පිළිවෙළට setup කරන්න:
+
+  1) /setmodlog channel:#mod-logs
+        --> moderation actions log වෙන තැන දාන්න.
+
+  2) /security setlog channel:#security-logs
+        --> ආරක්ෂක (private) logs යවන තැන දාන්න.
+
+  3) /security setalerts channel:#alerts
+        --> public threat announcements යවන තැන දාන්න.
+
+  4) /security antinuke enabled:True
+        --> Anti-Nuke on කරන්න.
+
+  5) /security antiraid enabled:True
+        --> Anti-Raid on කරන්න.
+
+  6) /security minage hours:168
+        --> අලුත් accounts filter කරන්න (දවස් 7ක්).
+
+  7) /verification setup channel:#verify verified_role:@Member
+        --> verification gate එක on කරන්න.
+
+  8) /backup now
+        --> මුල්ම backup එක ගන්න.
+
+  9) /trust add member:@YourCoOwner   (ඕන නම් විතරක්)
+        --> විශ්වාසවන්ත admins ලා trust list එකට දාන්න.
+
+  10) /securitystatus
+        --> ඔක්කොම හරියට on වෙලාද කියලා බලන්න.
+
+
+═══════════════════════════════════════════════════════════════════════════
+ කොටස 8 — Commands ඔක්කොම එකපාරට (ඉක්මන් ලැයිස්තුව)
+═══════════════════════════════════════════════════════════════════════════
+
+  MODERATION:
+    /kick, /ban, /unban, /timeout, /untimeout,
+    /warn add, /warn list, /warn remove, /warn clear,
+    /purge, /lock, /unlock, /setmodlog
+
+  UTILITY:
+    /ping, /serverinfo, /userinfo, /avatar
+
+  SECURITY:
+    /securitystatus,
+    /security setlog, /security setalerts, /security antinuke,
+    /security antiraid, /security minage
+
+  TRUST:
+    /trust add, /trust remove, /trust list
+
+  LOCKDOWN:
+    /lockdown engage, /lockdown lift
+
+  FREEZE:
+    /freeze on, /freeze off
+
+  VERIFICATION:
+    /verification setup, /verification disable
+
+  BACKUP:
+    /backup now, /backup info, /backup restore
+
+  AUTOMATIC (commands නෙවෙයි):
+    Anti-Nuke, Anti-Raid
+
+  ─────────────────────────────────────────────────
+  මුළු slash commands ගණන: 32ක්
+  ─────────────────────────────────────────────────
+
+
+╔══════════════════════════════════════════════════════════════════════╗
+║  ප්‍රශ්නයක් තියෙනවා නම් හෝ command එකක් වැඩ කරන්නේ නැත්නම්:              ║
+║  1) bot එකට හරි permissions තියෙනවද බලන්න (Discord role settings).     ║
+║  2) bot එකේ role එක අනිත් roles වලට වඩා උඩින් තියෙනවද බලන්න.           ║
+║  3) /ping කරලා bot එක online ද බලන්න.                                  ║
+╚══════════════════════════════════════════════════════════════════════╝
